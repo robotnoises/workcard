@@ -1,4 +1,5 @@
-import { faunaDb, q } from './lib';
+const faunadb = require('faunadb');
+const q = faunadb.query
 
 const id = '287001482713104896'; // todo: temp
 
