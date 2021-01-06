@@ -11,12 +11,11 @@ exports.handler = async function (event, context) {
   let response;
 
   try {
-    response = await client.query(q.Get(q.Ref('workcard/cards', id)));
+    response = await client.query(q.Get(q.Ref(q.Collection('cards'), id)));
   } catch (ex) {
     console.error({ ex });
   }
   
-
   return {
     statusCode: 200,
     body: JSON.stringify({ data: response }),
