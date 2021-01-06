@@ -8,7 +8,14 @@ exports.handler = async function (event, context) {
     secret: process.env.FAUNADB_SECRET,
   })
 
-  const response = await client.query(q.Get(q.Ref(`workcard/cards/${id}`)));
+  let response;
+
+  try {
+    response = await client.query(q.Get(q.Ref(`workcard/cards/${id}`)));
+  } catch (ex) {
+    console.error({ ex });
+  }
+  
 
   return {
     statusCode: 200,
