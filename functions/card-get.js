@@ -11,7 +11,7 @@ exports.handler = async function (event, context) {
   let response;
 
   try {
-    response = await client.query(q.Get(q.Ref(`workcard/cards/${id}`)));
+    response = await client.query(q.Get(q.Ref('workcard/cards', id)));
   } catch (ex) {
     console.error({ ex });
   }
