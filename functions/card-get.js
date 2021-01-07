@@ -1,7 +1,7 @@
 const faunadb = require('faunadb');
 const q = faunadb.query
 
-const id = '287001482713104896'; // todo: temp
+const id = '287024787592577539'; // todo: temp
 
 exports.handler = async function (event, context) {
   const client = new faunadb.Client({
