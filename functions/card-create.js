@@ -18,7 +18,7 @@ exports.handler = async function (event, context) {
   let response;
 
   try {
-    response = await client.query(q.Create(q.Collection('cards'), fakeData));
+    response = await client.query(q.Create(q.Collection('cards'), { data: fakeData }));
   } catch (ex) {
     console.error({ ex });
   }
