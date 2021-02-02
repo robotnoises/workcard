@@ -1,17 +1,20 @@
-const faunadb = require('faunadb');
-const q = faunadb.query
+const contentful = require('contentful');
 
-const id = '287024787592577539'; // todo: temp
+const space = process.env.CONTENTFUL_SPACE_ID;
+const accessToken = process.env.CONTENTFUL_API_TOKEN;
+
+const id = '5C1xUsOd7UGgSdwAO4knVg'; // todo: temp
 
 exports.handler = async function (event, context) {
-  const client = new faunadb.Client({
-    secret: process.env.FAUNADB_SECRET,
+  const client = contentful.createClient({
+    space,
+    accessToken,
   })
 
   let response;
 
   try {
-    response = await client.query(q.Get(q.Ref(q.Collection('cards'), id)));
+    response = await client.getEntry(id);
   } catch (ex) {
     console.error({ ex });
   }
