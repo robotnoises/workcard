@@ -18,6 +18,8 @@ exports.handler = async function (event, context) {
   } catch (ex) {
     console.error({ ex });
   }
+
+  console.log(response);
   
   return {
     statusCode: 200,
