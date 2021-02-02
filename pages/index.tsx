@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Login from '@components/Login';
 import Footer from '@components/Footer';
 
 export default function Home() {
@@ -11,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Login />
+        <p>hello.</p>
       </main>
 
       <Footer />
