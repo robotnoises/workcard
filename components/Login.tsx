@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useIdentity } from '@hooks/useIdentity';
+import useIdentity from '@hooks/useIdentity';
 
 const Login = () => {
   const { state, login, logout, closeModal } = useIdentity();

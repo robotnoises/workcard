@@ -4,7 +4,7 @@ import { Identity, IdentityState, User } from '@models/identity';
 
 const idConfig = {};
 
-export const useIdentity = (): Identity => {
+const useIdentity = (): Identity => {
   const [state, setState] = useState<IdentityState>({ loggedIn: false });
 
   useEffect(() => {
@@ -31,3 +31,5 @@ export const useIdentity = (): Identity => {
     state,
   };
 };
+
+export default useIdentity;
