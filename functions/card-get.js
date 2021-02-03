@@ -11,10 +11,10 @@ exports.handler = async function (event, context) {
     accessToken,
   })
 
-  let response;
+  let result;
 
   try {
-    response = await client.getEntry(id);
+    result = await client.getEntry(id);
   } catch (ex) {
     console.error({ ex });
   }
@@ -25,6 +25,6 @@ exports.handler = async function (event, context) {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify({ response }),
+    body: JSON.stringify(result),
   };
 };
