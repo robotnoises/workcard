@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -26,10 +30,18 @@ code {
   font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
 }
 
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* More specific stuff */
+
+.bg-gradient {
+  background: #fafafa;
+  background: -moz-linear-gradient(180deg, #fafafa 50%, #fff 100%);
+  background: -webkit-linear-gradient(180deg, #fafafa 50%, #fff 100%);
+  background: linear-gradient(180deg, #fafafa 50%, #fff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fafafa",endColorstr="#ffffff",GradientType=1);
+}
+
+.card {
+  height: 400px;
+  width: 100%;
+  max-width: 700px;
 }
