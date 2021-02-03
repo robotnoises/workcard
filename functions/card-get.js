@@ -25,6 +25,6 @@ exports.handler = async function (event, context) {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify({ data: response.data }),
+    body: JSON.stringify({ response }),
   };
 };
