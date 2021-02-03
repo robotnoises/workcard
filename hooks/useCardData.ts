@@ -1,17 +1,25 @@
 import axios, { AxiosResponse } from 'axios';
 import { CardData } from '@models/card';
+import { useState } from 'react';
 
-const useCardData = async (slug: string): Promise<CardData> => {
-  let result: AxiosResponse;
+const useCardData = (slug: string): CardData => {
+  const [cardData, setCardData] = useState<CardData>(null);
+
+  const get = async () => {
+    let result: AxiosResponse;
+
+    try {
+      result = await axios.get(`https://workcard.co/.netlify/functions/card-get`); // todo: config, slug /${slug}
+    } catch (ex) {
+      console.error('Get CardData Error:', ex);
+    }
+
+    setCardData(result.data.fields as CardData);
+  };
+
+  void get();
   
-  try {
-    result = await axios.get(`https://workcard.co/.netlify/functions/card-get`); // todo: config, slug /${slug}
-  } catch (ex) {
-    console.error('Get CardData Error:', ex);
-    // todo: return error?
-  }
-  
-  return result.data.fields as CardData;
+  return cardData;
 };
 
 export default useCardData;
