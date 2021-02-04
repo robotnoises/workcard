@@ -1,12 +1,27 @@
-import useCardData from '@hooks/useCardData';
+import { useEffect, useState } from 'react';
+import { get } from '@gateways/card';
+import { CardData } from '@models/card';
 
-const Card = () => {
-  const card = useCardData(''); // todo slug
+export type CardProps = {
+  slug: string;
+};
 
-  console.log({ card });
+const Card = ({ slug }: CardProps) => {
+  const [card, setCard] = useState<CardData>(null);
+
+  const getCardData = async (slug: string): Promise<void> => {
+    const cardData = await get('');
+    setCard(cardData);
+  };
+
+  useEffect(() => {
+    void getCardData('');
+  }, []);
 
   return (
-    <div className="card bg-white rounded shadow-xl"></div>
+    <div className="card bg-white rounded shadow-xl">
+      <div>{ card && card.firstName }</div>
+    </div>
   );
 };
 
