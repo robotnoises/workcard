@@ -1,23 +1,34 @@
-const contentful = require('contentful');
-
-const space = process.env.CONTENTFUL_SPACE_ID;
-const accessToken = process.env.CONTENTFUL_API_TOKEN;
-
-const id = '5C1xUsOd7UGgSdwAO4knVg'; // todo: temp
+const faunadb = require('faunadb');
+const { query: q } = faunadb;
 
 exports.handler = async function (event, context) {
-  const client = contentful.createClient({
-    space,
-    accessToken,
-  })
+  const client = new faunadb.Client({
+    secret: process.env.FAUNADB_SERVER_SECRET,
+  });
 
-  // let response;
+  const fakeData = {
+    "firstName": "David",
+    "lastName": "Nichols",
+    "bio": "Experienced software engineer and manager. Passionate about building great teams. Lean software advocate. Servant leader.",
+    "jobTitle": "Senior Software Engineering Manager",
+    "recentEmployer": "Asurion",
+    "location": "Nashville, TN",
+    "phoneNumber": "",
+    "email": "davenich@gmail.com",
+    "skills": {},
+    "links": {},
+    "hobbies": {},
+  };
 
-  // try {
-  //   response = await client.getEntry(id);
-  // } catch (ex) {
-  //   console.error({ ex });
-  // }
+  let result;
+
+  try {
+    result = await client.query(q.Create(q.Collection('cards'), { data: fakeData }));
+  } catch (ex) {
+    console.error({ ex });
+  }
+
+  console.log(result);
   
   return {
     statusCode: 200,
