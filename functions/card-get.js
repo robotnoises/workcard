@@ -1,20 +1,17 @@
-const contentful = require('contentful');
+const faunadb = require('faunadb')
+const { query: q } = faunadb;
 
-const space = process.env.CONTENTFUL_SPACE_ID;
-const accessToken = process.env.CONTENTFUL_API_TOKEN;
-
-const id = '5C1xUsOd7UGgSdwAO4knVg'; // todo: temp
+const id = '289631659817435650'; // todo: temp
 
 exports.handler = async function (event, context) {
-  const client = contentful.createClient({
-    space,
-    accessToken,
-  })
+  const client = new faunadb.Client({
+    secret: process.env.FAUNADB_SERVER_SECRET,
+  });
 
   let result;
 
   try {
-    result = await client.getEntry(id);
+    result = await await client.query(q.Get(q.Ref(q.Collection('cards'), id)));
   } catch (ex) {
     console.error({ ex });
   }
@@ -25,6 +22,6 @@ exports.handler = async function (event, context) {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify(result),
+    body: JSON.stringify(result.data),
   };
 };
