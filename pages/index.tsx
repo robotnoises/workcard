@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
 
       <main className="flex-grow">
-        <Card />
+        <Card slug="david-nichols" />
       </main>
 
       <Footer />
