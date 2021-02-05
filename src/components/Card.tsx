@@ -10,7 +10,8 @@ const Card = ({ slug }: CardProps) => {
   const [card, setCard] = useState<CardData>(null);
 
   const getCardData = async (slug: string): Promise<void> => {
-    const cardData = await get('');
+    const cardData = await get(slug);
+    console.log(cardData);
     setCard(cardData);
   };
 
